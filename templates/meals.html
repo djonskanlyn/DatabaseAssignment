@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<article class="main">
+
+		<h1>Random Recipe Generator</h1>
+
+		<div>
+			<select id="categorySelect"></select>
+			<button id="fetchMeal" class="mealButton">generate a recipe</button>
+			<div id="mealId" class="invisible"></div>
+			<div id="mealName"></div>
+			<div id="mealThumb"></div>
+			<div id="mealClass" class="invisible"></div>
+			<div id="mealInstructions"></div>
+		</div>
+
+		<form id="favouriteForm" action="/favourites" method="post">
+			<button type="submit" id="SaveFavouriteButton" class="mealButton" disabled>Save as Favourite</button>
+			<input type="number" id="mealIdForm" name="mealIdForm" class="invisible">
+			<input type="text" id="mealClassForm" name="mealClassForm" class="invisible">
+			<input type="text" id="mealNameForm" name="mealNameForm" class="invisible">
+			<input type="text" id="mealThumbForm" name="mealThumbForm" class="invisible">
+			<input type="text" id="mealInstructionsForm" name="mealInstructionsForm" class="invisible">
+		</form>
+
+	</article>
+
+	<aside class="aside aside-1"></aside> <!-- left empty on purpose -->
+
+	<aside class="aside aside-2"></aside> <!-- left empty on purpose -->
+
+	<footer class="footer">
+		Copyright &copy; 2024 John Scanlon<br />
+		<a href="mailto:johnscanlon104@gmail.com">johnscanlon104@gmail.com</a>
+	</footer>
+
+	<script src="{{ url_for('static', filename='js/meal_api.js') }}"></script>
+
+{% endblock %}

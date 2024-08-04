@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <article class="main">
+        <h1>Favourite Meals</h1>
+        {% if favourites %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Recipe</th>
+                    <th>Category</th>
+                    <th>Instructions</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for id, data in favourites.items() %}
+                <tr class="row-header">
+                    <td><img src="{{ data['Thumbnail'] }}" alt="Image of {{ data['Meal'] }}" style="width:100px; border-radius: 5px;"></td>
+                    <td>{{ data['Meal'] }}</td>
+                    <td>{{ data['Class'] }}</td>
+                    <td class="preview">{{ data['Instructions'] | truncate(50) }}</td>
+                    <td>
+                        <button class="toggle-button">&#43;</button> <!-- Plus icon -->
+                        <form action="{{ url_for('delete_favourite', mealId=id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this favourite?');">
+                            <button type="submit">❌</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr class="row-details" style="display: none;">
+                    <td colspan="5">{{ data['Instructions'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No favourite meals saved yet.</p>
+        {% endif %}
+    </article>
+
+    <aside class="aside aside-1"></aside> <!-- left empty on purpose -->
+
+	<aside class="aside aside-2"></aside> <!-- left empty on purpose -->
+
+	<footer class="footer">
+		Copyright &copy; 2024 John Scanlon<br />
+		<a href="mailto:johnscanlon104@gmail.com">johnscanlon104@gmail.com</a>
+	</footer>
+
+    <script src="{{ url_for('static', filename='js/favourites.js') }}"></script>
+
+{% endblock %}

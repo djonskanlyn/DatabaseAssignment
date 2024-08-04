@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <article class="main">
+
+        <h1>Ingredients & Measures Shopping List</h1>
+        <div>
+            <select name="meals" id="meals-dropdown">
+                <option value="">Select a meal</option>
+                {% for meal_id, meal_name in meal_options %}
+                <option value="{{ meal_id }}">{{ meal_name }} (ID: {{ meal_id }})</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div id="ingredientsMeasures"></div>
+    
+    </article>
+
+    <aside class="aside aside-1"></aside> <!-- left empty on purpose -->
+
+	<aside class="aside aside-2"></aside> <!-- left empty on purpose -->
+
+	<footer class="footer">
+		Copyright &copy; 2024 John Scanlon<br />
+		<a href="mailto:johnscanlon104@gmail.com">johnscanlon104@gmail.com</a>
+	</footer>
+
+    <script src="{{ url_for('static', filename='js/ingredients.js') }}"></script>
+
+{% endblock %}

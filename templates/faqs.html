@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <article class="main">
+        <h1>FAQs</h1>
+        <div>
+            <button class="accordion">1. What is Basal Metabolic Rate (BMR)?</button>
+            <div class="panel">
+                <p>
+                    Answer: Basal Metabolic Rate (BMR) is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions. These functions include breathing, circulation, cell production,
+                    nutrient processing, protein synthesis, and ion transport.
+                </p>
+            </div>
+
+            <button class="accordion">2. How is BMR calculated?</button>
+            <div class="panel">
+                <p>
+                    Answer: BMR can be calculated using various formulas, with the most common being the Harris-Benedict Equation. Other methods include the Mifflin-St Jeor Equation and the Katch-McArdle formula which takes lean
+                    body mass into account, providing a slightly more accurate result.
+                </p>
+            </div>
+
+            <button class="accordion">3. Why is BMR important for weight loss?</button>
+            <div class="panel">
+                <p>
+                    Answer: Understanding your BMR can help you determine how many calories your body needs to maintain weight, which can then help you create a calorie deficit necessary for weight loss. By knowing your BMR, you can
+                    better estimate your total daily energy expenditure (TDEE) by accounting for activity level, which aids in precise caloric intake adjustments for weight loss.
+                </p>
+            </div>
+
+            <button class="accordion">4. Does muscle mass affect BMR?</button>
+            <div class="panel">
+                <p>
+                    Answer: Yes, muscle mass significantly affects BMR because muscle tissue burns more calories at rest compared to fat tissue. Increasing your muscle mass increases your BMR, which raises the number of calories you
+                    burn while at rest and can aid in weight management.
+                </p>
+            </div>
+
+            <button class="accordion">5. How can I increase my BMR?</button>
+            <div class="panel">
+                <p>
+                    Answer: You can increase your BMR by building more muscle. Strength training exercises like weight lifting can help build muscle mass. Additionally, high-intensity interval training (HIIT) has been shown to boost
+                    metabolism by increasing the rate at which your body burns calories even after you've finished exercising.
+                </p>
+            </div>
+
+            <button class="accordion">6. Does age affect BMR?</button>
+            <div class="panel">
+                <p>
+                    Answer: Yes, as you age, your BMR generally decreases. This decrease is partly due to loss of muscle mass and changes in hormonal and neurological processes. Regular physical activity and strength training can
+                    help mitigate some of this decline.
+                </p>
+            </div>
+
+            <button class="accordion">7. What is the difference between BMR and RMR (Resting Metabolic Rate)?</button>
+            <div class="panel">
+                <p>
+                    Answer: BMR and RMR are often used interchangeably, but they are slightly different. BMR measurement conditions are more controlled and require that the subject's sympathetic nervous system is inactive, which
+                    typically means measurements are taken in a darkened room immediately after waking from a full night's sleep. RMR conditions are less controlled and can be measured at any time under any conditions, making RMR
+                    slightly higher than BMR.
+                </p>
+            </div>
+
+            <button class="accordion">8. How do diet and nutrition affect BMR?</button>
+            <div class="panel">
+                <p>
+                    Answer: Your diet and nutrition can affect your BMR; for instance, malnutrition or severe calorie restriction can lower your BMR as your body conserves energy. Conversely, a process called thermogenesis can
+                    temporarily increase your BMR during digestion, particularly after protein consumption.
+                </p>
+            </div>
+
+            <button class="accordion">9. What role does the thyroid play in regulating BMR?</button>
+            <div class="panel">
+                <p>
+                    Answer: The thyroid gland produces hormones that significantly affect BMR. Conditions such as hypothyroidism (underactive thyroid) can lower BMR due to decreased hormone production, slowing metabolism.
+                    Hyperthyroidism (overactive thyroid) increases hormone production and raises BMR.
+                </p>
+            </div>
+
+            <button class="accordion">10. Can lifestyle factors affect BMR?</button>
+            <div class="panel">
+                <p>
+                    Answer: Yes, several lifestyle factors can influence BMR. Smoking and caffeine can temporarily raise BMR, whereas sleep deprivation can lower BMR. Stress also impacts hormones like cortisol, which can lead to
+                    weight gain if not managed properly.
+                </p>
+            </div>
+        </div>
+    </article>
+
+    <aside class="aside aside-1"></aside> <!-- left empty on purpose -->
+
+    <aside class="aside aside-2"></aside> <!-- left empty on purpose -->
+
+    <footer class="footer">
+        Copyright &copy; 2024 John Scanlon<br />
+        <a href="mailto:johnscanlon104@gmail.com">johnscanlon104@gmail.com</a>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/accordion.js') }}"></script>
+
+{% endblock %}
+
+
