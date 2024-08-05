@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="{{ url_for('user_insert') }}"  method="POST">
+        <label for="username">username</label>
+        <input type="text" id="username" name="username">
+        <label for="email">email</label>
+        <input type="text" id="email" name="email">
+        <label for="password">password</label>
+        <input type="text" id="password" name="password">
+
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
+
+

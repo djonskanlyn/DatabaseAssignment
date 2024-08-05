@@ -35,4 +35,5 @@ menu.appendChild(createNavigationLink('FAQs',"/faqs"));
 menu.appendChild(createNavigationLink('Meals',"/meals"));
 menu.appendChild(createNavigationLink('Favourites',"/favourites"));
 menu.appendChild(createNavigationLink('Ingredients',"/ingredients"));
+menu.appendChild(createNavigationLink('Users',"/users"));
 
