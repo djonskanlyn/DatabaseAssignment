@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify										
-from models import db, User, Email
+from models import db, User, Email, Bmrdata, Registrations
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -137,6 +137,49 @@ def user_update(user_id):
     db.session.commit()
 
     return redirect( url_for('users') )
+
+@app.route('/calculate_bmr', methods=['POST'])
+def calculate_bmr():
+    try:
+        data    = request.json
+        gender  = data.get('gender')
+        age     = data.get('age')
+        height  = data.get('height')
+        weight  = data.get('weight')
+
+        if not (gender and age and height and weight):
+            return jsonify({"message": "Missing required fields"}), 400
+
+        new_bmr_data = Bmrdata(gender=gender, age=age, height=height, weight=weight)
+        db.session.add(new_bmr_data)
+        db.session.commit()
+
+        return jsonify({"message": "BMR calculated successfully"}), 201
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
+    
+@app.route('/register_details', methods=['POST'])
+def register_details():
+    try:
+        data            = request.json
+        username_reg    = data.get('name')
+        email_reg       = data.get('email')
+        password_reg    = data.get('password1')
+
+        if not (username_reg and email_reg and password_reg):
+            return jsonify({"message": "Missing required fields"}), 400
+
+        new_registration_data = Registrations(
+            username_reg=username_reg, 
+            email_reg=email_reg, 
+            password_reg=password_reg
+            )
+        db.session.add(new_registration_data)
+        db.session.commit()
+
+        return jsonify({"message": "You have successfully registered for our newsletter!"}), 201
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
 
 
 if __name__ == "__main__":

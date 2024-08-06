@@ -40,7 +40,30 @@ document.addEventListener('DOMContentLoaded', function () { // checks that the D
       }
 
       if (isValid) { // if logical variable still true insert success message
-        document.getElementById("msg_success").innerText = "Account registered successfully!";
+        document.getElementById("msg_success").innerText = "You have registered for our newsletter!";
+
+        // Send data to the backend
+        fetch('/register_details', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, password1 }),
+        })
+        .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+            console.log(data.message);
+            alert(data.message); // Optional: Alert message or another way to notify user
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting your data. Please try again.');
+        });
       }
   };
 });

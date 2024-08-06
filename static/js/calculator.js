@@ -54,6 +54,29 @@ function calculateBMR() {
   }
 
   document.getElementById('result').innerText = `Your BMR is ${bmr.toFixed(2)} kcal/day.`; // output messgae
+
+  // Send data to the backend
+  fetch('/calculate_bmr', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ gender, age, height, weight }),
+  })
+  .then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+      console.log(data.message);
+      alert(data.message); // Optional: Alert message or another way to notify user
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while submitting your data. Please try again.');
+  });
 }
 
 

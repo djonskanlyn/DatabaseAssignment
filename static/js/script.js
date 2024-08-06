@@ -5,7 +5,7 @@ function addLogoImage(image, alt_text, size) {
 
     let img = document.createElement('img');
 
-    img.src = image;
+    img.src = '/' + image;  // Add leading slash to make the path absolute
     img.alt = alt_text;
     img.style.height = size;
 

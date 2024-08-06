@@ -7,3 +7,5 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 
 python app.py runserver
+
+postgresql://databaseassignment_user:cvK9Y3Zda1wFYlV6CGAyQvOLSt3PxMia@dpg-cqovpsij1k6c73d9utg0-a.frankfurt-postgres.render.com/databaseassignment
