@@ -68,7 +68,14 @@ html {
     height: 50px;
     text-align: centre;
   }
-  
+  a {
+    text-decoration: none;  /* Removes underline */
+    color: blue;            /* Sets the default color to blue */
+  } 
+
+  a:visited {
+    color: blue;            /* Prevents the color from changing after the link is visited */
+  }
   
   h2 {
     color: black;

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <head>
+        <style>
+            * {
+            box-sizing: border-box;
+            }
+
+            input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            }
+
+            label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+            }
+
+            input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            }
+
+            input[type=submit]:hover {
+            background-color: #45a049;
+            }
+
+            .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            }
+
+            .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+            }
+
+            .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+            }
+
+            /* Clear floats after the columns */
+            .row::after {
+            content: "";
+            display: table;
+            clear: both;
+            }
+        </style>
+    </head>
+
+    <article class="main">
+        <h1>Add New Recipe</h1>
+
+        <form action="{{ url_for('user_insert') }}"  method="POST">
+
+            <div class="row">
+                <div class="col-25">
+                  <label for="recipe">Recipe Name</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="recipe" name="recipe" placeholder="Your recipe name ...">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                  <label for="category">Recipe Category</label>
+                </div>
+                <div class="col-75">
+                  <select id="category" name="category">
+                    <option value="Beef">Beef</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Lamb">Lamb</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                    <option value="Pasta">Pasta</option>
+                    <option value="Pork">Pork</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Side">Side</option>
+                    <option value="Starter">Starter</option>
+                    <option value="Vegan">Vegan</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Goat">Goat</option>
+                  </select>
+                </div>
+            </div>
+
+            <!-- <label for="recipe">recipe name</label>
+            <input type="text" id="recipe" name="recipe">
+            
+            <label for="category">recipe category</label>
+            <input type="text" id="category" name="category">
+
+            <label for="instruction">receipe instructions</label>
+            <input type="text" id="instruction" name="instruction">
+    
+            <button type="submit">Submit</button> -->
+        </form>
+ 
+    </article>
+
+    <aside class="aside aside-1"></aside> <!-- left empty on purpose -->
+
+	<aside class="aside aside-2"></aside> <!-- left empty on purpose -->
+
+	<footer class="footer">
+		Copyright &copy; 2024 John Scanlon<br />
+		<a href="mailto:johnscanlon104@gmail.com">johnscanlon104@gmail.com</a>
+	</footer>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <article class="main">
+        <h1>User Recipes</h1>
+        {% if recipes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Recipe</th>
+                    <th>Category</th>
+                    <th>Instructions</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr class="row-header">
+                    <td>{{ recipe.recipe }}</td>
+                    <td>{{ recipe.cat_br_rec.category }}</td>
+                    <td class="preview">{{ recipe.instructions.instruction | truncate(50) }}</td>
+                    <td>
+                        <button class="toggle-button">&#43;</button>
+                        <form action="{{url_for('recipe_delete', recipe_id=recipe.id)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this favourite?');">
+                            <button type="submit">❌</button>
+                        </form>
+                        <a href="{{url_for('recipe_delete', recipe_id=recipe.id)}}">&nbsp;&nbsp;[Edit]</a>
+                    </td>
+                </tr>
+                <tr class="row-details" style="display: none;">
+                    <td colspan="5">{{ recipe.instructions.instruction }}</td>
+                </tr>
+                {% endfor %}
+
+                <p><a href="{{url_for('recipes_form')}}">Add Recipe</a></p>
+            </tbody>
+        </table>
+        {% else %}
+        <p>No recipes found.</p>
+        {% endif %}
+    </article>
+
+    <aside class="aside aside-1"></aside> <!-- left empty on purpose -->
+
+	<aside class="aside aside-2"></aside> <!-- left empty on purpose -->
+
+	<footer class="footer">
+		Copyright &copy; 2024 John Scanlon<br />
+		<a href="mailto:johnscanlon104@gmail.com">johnscanlon104@gmail.com</a>
+	</footer>
+
+    <script src="{{ url_for('static', filename='js/favourites.js') }}"></script>
+
+{% endblock %}

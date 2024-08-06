@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify										
-from models import db, User, Email, Bmrdata, Registrations
+from models import db, User, Email, Bmrdata, Registrations,Recipes,Ingredients,Categories,Instructions
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -181,6 +181,54 @@ def register_details():
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
+@app.route("/user_recipes")
+def user_recipes():
+    # Retrieve all recipes with their related data
+    recipes = Recipes.query.options(
+        db.joinedload(Recipes.cat_br_rec),
+        db.joinedload(Recipes.ingredients),
+        db.joinedload(Recipes.instructions)
+    ).all()
+    return render_template('user_recipes.html', recipes=recipes)
+
+@app.route("/recipes_delete/<int:recipe_id>", methods=['POST'])
+def recipe_delete(recipe_id):
+    recipe = Recipes.query.get_or_404(recipe_id)
+    db.session.delete(recipe)
+    db.session.commit()
+    return redirect( url_for('user_recipes'))
+
+
+@app.route("/recipes_form")
+def recipes_form():
+     return render_template("recipes_form.html")
+
+@app.route("/recipes_insert", methods=['POST'])
+def recipes_insert():
+    recipe = request.form.get("recipe")
+    category = request.form.get("category")
+    instruction = request.form.get("instruction")
+
+    new_category = Categories(
+        category = category
+    )
+
+    new_recipe = Recipes(
+        recipe = recipe,
+        category = new_category
+    )
+
+    new_instruction = Instructions(
+        instruction = instruction,
+        recipe = new_recipe
+    )
+
+    db.session.add(new_category)
+    db.session.add(new_recipe)     
+    db.session.add(new_instruction)
+    db.session.commit()
+
+    return redirect( url_for('user_recipes') )
 
 if __name__ == "__main__":
     app.run(debug=True)
